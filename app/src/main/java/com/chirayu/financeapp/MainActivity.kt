@@ -20,6 +20,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.chirayu.financeapp.pages.Expenses
+import com.chirayu.financeapp.pages.Settings
 import com.chirayu.financeapp.ui.theme.FinanceAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -85,17 +87,19 @@ override fun onCreate(savedInstanceState: Bundle?) {
                                 }
                             )
                         }
-                    }
-                ,
+                    },
                 content = { innerPadding ->
-                    NavHost(navController = navController, startDestination = "expenses"){
+                    NavHost(
+                        navController = navController,
+                        startDestination = "expenses"
+                        ){
                         composable("expenses"){
                             Surface(
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .padding(innerPadding)
                             ) {
-                                Greeting(name = "Expenses")
+                                Expenses(navController,"Chirayu")
                             }
                         }
                         composable("reports"){
@@ -122,16 +126,24 @@ override fun onCreate(savedInstanceState: Bundle?) {
                                     .fillMaxSize()
                                     .padding(innerPadding)
                             ) {
-                                Greeting(name = "Settings")
+                                Settings(navController)
+                            }
+                        }
+                        composable("settings/categories"){
+                            Surface(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(innerPadding)
+                            ) {
+                                Greeting(name = "Categories")
                             }
                         }
                     }
                 }
-            )
+                )
+            }
         }
     }
-}
-
 }
 
     @Composable
