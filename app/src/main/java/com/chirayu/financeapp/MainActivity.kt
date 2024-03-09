@@ -20,6 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.chirayu.financeapp.pages.Add
 import com.chirayu.financeapp.pages.Expenses
 import com.chirayu.financeapp.pages.Settings
 import com.chirayu.financeapp.ui.theme.FinanceAppTheme
@@ -119,7 +120,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
                                     .fillMaxSize()
                                     .padding(innerPadding)
                             ) {
-                                Greeting(name = "Add")
+                                Add(navController)
                             }
                         }
                         composable("settings"){
