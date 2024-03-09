@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.chirayu.financeapp.pages.Expenses
 import com.chirayu.financeapp.pages.Settings
 import com.chirayu.financeapp.ui.theme.FinanceAppTheme
+import com.chirayu.financeapp.ui.theme.TopAppBarBackground
 
 class MainActivity : ComponentActivity() {
 override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
             val backStackEntry = navController.currentBackStackEntryAsState()
             Scaffold(
                 bottomBar = {
-                        NavigationBar {
+                        NavigationBar(containerColor = TopAppBarBackground) {
                             NavigationBarItem(
                                 selected = backStackEntry.value?.destination?.route == "expenses",
                                 onClick = { navController.navigate("expenses") },
@@ -74,7 +75,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
                                 }
                             )
                             NavigationBarItem(
-                                selected = backStackEntry.value?.destination?.route == "settings",
+                                selected = backStackEntry.value?.destination?.route?.startsWith("settings")?:false ,
                                 onClick = { navController.navigate("settings") },
                                 label = {
                                     Text("Settings")
@@ -88,6 +89,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
                             )
                         }
                     },
+                //Setting up Nav Host and route
                 content = { innerPadding ->
                     NavHost(
                         navController = navController,
