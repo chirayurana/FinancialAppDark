@@ -20,19 +20,28 @@ import com.chirayu.financeapp.ui.theme.TextPrimary
 import com.chirayu.financeapp.ui.theme.Typography
 
 @Composable
-fun TableRow(label:String,modifier:Modifier = Modifier, hasArrow: Boolean = false, isDestructive:Boolean = false, content:(@Composable RowScope.()-> Unit)? = null) {
+fun TableRow(
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    hasArrow: Boolean = false,
+    isDestructive: Boolean = false,
+    content: (@Composable RowScope.() -> Unit)? = null) {
+
     val textColor = if (isDestructive) Destructive else TextPrimary
 
         Row(
-            modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
+            modifier = modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(text = label, style = Typography.bodyMedium, color = textColor, modifier = Modifier.padding(vertical = 10.dp))
+            if (label != null) {
+                Text(text = label, style = Typography.bodyMedium, color = textColor, modifier = Modifier.padding(horizontal = 16.dp , vertical = 10.dp))
+            }
             if (hasArrow) {
                 Icon(
                     painterResource(id = R.drawable.chevron_right),
-                    contentDescription = "Right Arrow" ,modifier = Modifier.padding(vertical = 10.dp)
+                    contentDescription = "Right Arrow" ,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp)
                 )
             }
             if(content!=null){
